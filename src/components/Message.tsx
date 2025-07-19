@@ -29,25 +29,28 @@ export function Message({ message }: MessageProps) {
 
   return (
     <div className={`flex gap-6 mb-8 ${message.isUser ? 'justify-end' : 'justify-start'}`}>
+      {/* Logo for Assistant */}
       {!message.isUser && (
         <div className="flex-shrink-0">
-          <div className="relative">
-            <div className="w-14 h-14 rounded-sm overflow-hidden shadow-vintage border-3 border-wartime-500 bg-wartime-100 p-1">
-              <div className="w-full h-full rounded border-2 border-wartime-700 overflow-hidden">
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/The_Rt_Hon_Sir_Winston_S_Churchill%2C_1954-mod.jpg/256px-The_Rt_Hon_Sir_Winston_S_Churchill%2C_1954-mod.jpg"
-                  alt="Winston Churchill"
-                  className="w-full h-full object-cover sepia-[0.3] contrast-110"
-                />
-              </div>
+          <div className="flex flex-col justify-center bg-wartime-700 border border-wartime-500 px-4 py-3 rounded shadow-typewriter w-48">
+            <div className="flex items-center gap-2">
+              <Crown className="w-5 h-5 text-victory-400" />
+              <span className="font-garamond text-lg font-bold text-wartime-100 tracking-wide">
+                THE CHURCHILL
+              </span>
             </div>
-            {/* Vintage corner accents */}
-            <div className="absolute -top-1 -left-1 w-3 h-3 border-l-2 border-t-2 border-victory-600"></div>
-            <div className="absolute -top-1 -right-1 w-3 h-3 border-r-2 border-t-2 border-victory-600"></div>
+            <div className="-mt-1">
+              <span className="text-sm font-garamond font-semibold text-victory-300 tracking-wide">
+                TIME MACHINE
+              </span>
+            </div>
+            <span className="text-[10px] mt-1 text-wartime-300 font-times tracking-wider">
+              WARTIME CORRESPONDENCE • EST. 1940
+            </span>
           </div>
         </div>
       )}
-      
+
       <div className={`max-w-2xl ${message.isUser ? 'order-1' : ''}`}>
         <div
           className={`p-6 shadow-vintage border-3 ${
@@ -56,21 +59,13 @@ export function Message({ message }: MessageProps) {
               : 'bg-paper bg-wartime-50 text-british-900 border-wartime-400 rounded-sm'
           }`}
         >
-          {!message.isUser && (
-            <div className="flex items-center gap-2 mb-3 pb-2 border-b border-wartime-300">
-              <Crown className="w-4 h-4 text-victory-600" />
-              <span className="text-xs font-garamond font-bold text-british-700 tracking-wider uppercase">
-                The Prime Minister
-              </span>
-            </div>
-          )}
           <p className={`leading-relaxed whitespace-pre-wrap ${
             message.isUser ? 'font-times text-sm' : 'font-times text-base'
           }`}>
             {message.text}
           </p>
         </div>
-        
+
         {!message.isUser && (
           <div className="flex items-center justify-between mt-3 px-2">
             <div className="flex items-center gap-2">
@@ -88,6 +83,7 @@ export function Message({ message }: MessageProps) {
         )}
       </div>
 
+      {/* User Avatar */}
       {message.isUser && (
         <div className="flex-shrink-0">
           <div className="w-14 h-14 bg-gradient-to-br from-british-600 to-british-800 rounded-sm flex items-center justify-center shadow-vintage border-3 border-british-500">
